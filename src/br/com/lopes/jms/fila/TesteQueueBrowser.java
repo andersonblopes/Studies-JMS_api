@@ -1,11 +1,11 @@
-package br.com.lopes;
+package br.com.lopes.jms.fila;
 
 import java.util.Enumeration;
 
 import javax.jms.JMSException;
 import javax.jms.TextMessage;
 
-import br.com.lopes.configurations.Config;
+import br.com.lopes.jms.configuration.Config;
 
 public class TesteQueueBrowser {
 

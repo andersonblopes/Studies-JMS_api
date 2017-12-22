@@ -1,4 +1,4 @@
-package br.com.lopes.jms;
+package br.com.lopes.jms.fila;
 
 import java.util.Scanner;
 
@@ -8,9 +8,9 @@ import javax.jms.MessageConsumer;
 import javax.jms.MessageListener;
 import javax.jms.TextMessage;
 
-import br.com.lopes.configurations.Config;
+import br.com.lopes.jms.configuration.Config;
 
-public class TesteConsumidor {
+public class TesteConsumidorFila {
 
 	@SuppressWarnings("resource")
 	public static void main(String[] args) throws Exception {

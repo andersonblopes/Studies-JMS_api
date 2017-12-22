@@ -1,4 +1,4 @@
-package br.com.lopes.configurations;
+package br.com.lopes.jms.configuration;
 
 import java.util.Properties;
 

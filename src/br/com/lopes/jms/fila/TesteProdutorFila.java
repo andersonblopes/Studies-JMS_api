@@ -1,10 +1,10 @@
-package br.com.lopes.jms;
+package br.com.lopes.jms.fila;
 
 import javax.jms.MessageProducer;
 
-import br.com.lopes.configurations.Config;
+import br.com.lopes.jms.configuration.Config;
 
-public class TesteProdutor {
+public class TesteProdutorFila {
 
 	@SuppressWarnings("resource")
 	public static void main(String[] args) throws Exception {
