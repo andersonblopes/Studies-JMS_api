@@ -9,6 +9,8 @@ import javax.jms.JMSException;
 import javax.jms.Message;
 import javax.jms.MessageConsumer;
 import javax.jms.MessageProducer;
+import javax.jms.Queue;
+import javax.jms.QueueBrowser;
 import javax.jms.Session;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
@@ -18,18 +20,19 @@ public class Config {
 	private static InitialContext context;
 	private static Connection connection;
 	private static Session session;
-	private static Destination destination;
+	private static Destination queue;
+	private QueueBrowser browser;
 
 	public Config() {
 		obterSession();
 	}
 
 	public MessageConsumer obterConsumidor() throws Exception {
-		return session.createConsumer(destination);
+		return session.createConsumer(queue);
 	}
 
 	public MessageProducer obterProdutor() throws Exception {
-		return session.createProducer(destination);
+		return session.createProducer(queue);
 	}
 
 	public Message obterMessage(String mensagem) throws Exception {
@@ -46,6 +49,15 @@ public class Config {
 		}
 	}
 
+	public QueueBrowser obterQueueBrowser() {
+		try {
+			browser = session.createBrowser((Queue) queue);
+		} catch (JMSException e) {
+			e.printStackTrace();
+		}
+		return browser;
+	}
+
 	private void obterSession() {
 		try {
 			context = new InitialContext(obterConfiguracoes());
@@ -53,7 +65,7 @@ public class Config {
 			connection = factory.createConnection();
 			connection.start();
 			session = connection.createSession(false, Session.AUTO_ACKNOWLEDGE);
-			destination = (Destination) context.lookup("financeiro");
+			queue = (Destination) context.lookup("financeiro");
 		} catch (NamingException | JMSException e) {
 			e.printStackTrace();
 		}
