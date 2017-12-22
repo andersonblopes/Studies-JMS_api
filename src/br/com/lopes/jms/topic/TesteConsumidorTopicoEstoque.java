@@ -13,7 +13,7 @@ import javax.jms.TextMessage;
 import javax.jms.Topic;
 import javax.naming.InitialContext;
 
-public class TesteConsumidorTopico {
+public class TesteConsumidorTopicoEstoque {
 
 	@SuppressWarnings("resource")
 	public static void main(String[] args) throws Exception {
