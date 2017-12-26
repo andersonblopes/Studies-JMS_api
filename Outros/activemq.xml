@@ -55,6 +55,7 @@
 		<authorizationEntries>
 		  <authorizationEntry queue="fila.financeiro" read="users" write="users" admin="users,admins" />
 		  <authorizationEntry topic="comercial" read="users" write="users" admin="users,admins" />
+		  <authorizationEntry topic="topico.loja" read="users" write="users" admin="users,admins" />
 		  <authorizationEntry topic="ActiveMQ.Advisory.>" read="users,admins" write="users,admins" admin="users,admins"/>
 		</authorizationEntries>
 		<tempDestinationAuthorizationEntry>
