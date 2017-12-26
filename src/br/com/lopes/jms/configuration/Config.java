@@ -62,7 +62,7 @@ public class Config {
 		try {
 			context = new InitialContext(obterConfiguracoes());
 			ConnectionFactory factory = (ConnectionFactory) context.lookup("ConnectionFactory");
-			connection = factory.createConnection();
+			connection = factory.createConnection("admin","admin");
 			connection.start();
 			session = connection.createSession(false, Session.AUTO_ACKNOWLEDGE);
 			queue = (Destination) context.lookup("financeiro");
