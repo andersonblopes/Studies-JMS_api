@@ -22,7 +22,8 @@ public class TestaProdutorTopico {
 		Destination topico = (Destination) context.lookup("loja");
 		MessageProducer producer = session.createProducer(topico);
 
-		Message message = session.createTextMessage("<pedido><id>222</id></pedido>");
+		Message message = session.createTextMessage("<pedido><id>222</id><e-book>true</e-book></pedido>");
+		//message.setBooleanProperty("ebook", true);
 		producer.send(message);
 
 		session.close();
