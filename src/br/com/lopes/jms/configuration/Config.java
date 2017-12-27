@@ -65,7 +65,7 @@ public class Config {
 			ConnectionFactory factory = (ConnectionFactory) context.lookup("ConnectionFactory");
 			connection = factory.createConnection();
 			connection.start();
-			session = connection.createSession(true, Session.SESSION_TRANSACTED);
+			session = connection.createSession(false, Session.AUTO_ACKNOWLEDGE);
 			queue = (Destination) context.lookup("financeiro");
 		} catch (NamingException | JMSException e) {
 			e.printStackTrace();
