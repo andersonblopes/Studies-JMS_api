@@ -24,7 +24,7 @@ public class Config {
 	private QueueBrowser browser;
 
 	public Config() {
-		System.setProperty("org.apache.activemq.SERIALIZABLE_PACKAGES","*");
+		System.setProperty("org.apache.activemq.SERIALIZABLE_PACKAGES", "*");
 		obterSession();
 	}
 
@@ -63,9 +63,9 @@ public class Config {
 		try {
 			context = new InitialContext(obterConfiguracoes());
 			ConnectionFactory factory = (ConnectionFactory) context.lookup("ConnectionFactory");
-			connection = factory.createConnection("admin","admin");
+			connection = factory.createConnection();
 			connection.start();
-			session = connection.createSession(false, Session.AUTO_ACKNOWLEDGE);
+			session = connection.createSession(true, Session.SESSION_TRANSACTED);
 			queue = (Destination) context.lookup("financeiro");
 		} catch (NamingException | JMSException e) {
 			e.printStackTrace();

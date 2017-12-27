@@ -12,10 +12,12 @@ public class TesteProdutorFila {
 
 		MessageProducer producer = config.obterProdutor();
 
-		for (int i = 0; i < 1000; i++) {
+		String msg = "<pedido><id>" + "123" + "</id></pedido>";
+		producer.send(config.obterMessage(msg));
+		/*for (int i = 0; i < 1000; i++) {
 			String msg = "<pedido><id>" + i + "</id></pedido>";
 			producer.send(config.obterMessage(msg));
-		}
+		}*/
 
 		// new Scanner(System.in).nextLine();
 
