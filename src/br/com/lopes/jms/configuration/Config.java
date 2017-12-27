@@ -24,6 +24,7 @@ public class Config {
 	private QueueBrowser browser;
 
 	public Config() {
+		System.setProperty("org.apache.activemq.SERIALIZABLE_PACKAGES","*");
 		obterSession();
 	}
 
