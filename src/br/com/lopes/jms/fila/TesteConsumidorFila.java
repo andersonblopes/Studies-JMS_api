@@ -17,6 +17,9 @@ public class TesteConsumidorFila {
 
 		Config config = new Config();
 
+		//Estabelece prioridade de consumo
+		//MessageConsumer consumer = session.createConsumer(fila, "JMSPriority > 6" );
+		
 		MessageConsumer consumer = config.obterConsumidor();
 
 		// Read only one message

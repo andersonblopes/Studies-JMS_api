@@ -13,8 +13,15 @@ public class TesteProdutorFila {
 
 		MessageProducer producer = config.obterProdutor();
 
-		String msg = "<pedido><id>" + "123" + "</id></pedido>";
-		producer.send(config.obterMessage(msg), DeliveryMode.PERSISTENT, 3, 5000);
+		String msg = "<pedido><id>" + "INFO" + "</id></pedido>";
+		/*
+		Parâmetros:
+		1º: Mensagem
+		1º: Guarda ou não no banco de dados em caso do servidor(MON) cair
+		1º: Prioridade da Mensagem - 0 a 9 - Configuração necessária no 'activemq.xml'
+		4º: Tempo de vida da Mensagem
+		*/
+		producer.send(config.obterMessage(msg), DeliveryMode.PERSISTENT, 3, 50000);
 		/*
 		 * for (int i = 0; i < 1000; i++) { String msg = "<pedido><id>" + i +
 		 * "</id></pedido>"; producer.send(config.obterMessage(msg)); }
