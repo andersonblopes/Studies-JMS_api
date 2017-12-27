@@ -30,7 +30,6 @@ public class TesteConsumidorFila {
 				TextMessage textMessage = (TextMessage) message;
 
 				try {
-					message.acknowledge();
 					System.out.println("Recebendo mensagem: " + textMessage.getText());
 				} catch (JMSException e) {
 					e.printStackTrace();

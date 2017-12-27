@@ -10,12 +10,7 @@ import javax.jms.Message;
 import javax.jms.MessageConsumer;
 import javax.jms.MessageListener;
 import javax.jms.Session;
-import javax.jms.TextMessage;
 import javax.naming.InitialContext;
-
-import org.omg.CORBA.INITIALIZE;
-
-import br.com.lopes.jms.configuration.Config;
 
 public class TesteConsumidorFilaDLQ {
 
@@ -27,7 +22,7 @@ public class TesteConsumidorFilaDLQ {
 
 		Connection connection = factory.createConnection("admin", "admin");
 		connection.start();
-		Session session = connection.createSession(false, Session.AUTO_ACKNOWLEDGE);
+		Session session = connection.createSession(true, Session.SESSION_TRANSACTED);
 		Destination fila = (Destination) context.lookup("DLQ");
 
 		MessageConsumer consumer = session.createConsumer(fila);
@@ -36,8 +31,13 @@ public class TesteConsumidorFilaDLQ {
 
 			@Override
 			public void onMessage(Message message) {
-
-				System.out.println(message);
+				try {
+					// message.acknowledge();
+					System.out.println(message);
+					session.rollback();
+				} catch (JMSException e) {
+					e.printStackTrace();
+				}
 			}
 		});
 
