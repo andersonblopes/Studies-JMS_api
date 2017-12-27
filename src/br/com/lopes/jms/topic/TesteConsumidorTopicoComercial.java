@@ -1,4 +1,5 @@
 package br.com.lopes.jms.topic;
+
 import java.util.Scanner;
 
 import javax.jms.Connection;
@@ -7,10 +8,12 @@ import javax.jms.JMSException;
 import javax.jms.Message;
 import javax.jms.MessageConsumer;
 import javax.jms.MessageListener;
+import javax.jms.ObjectMessage;
 import javax.jms.Session;
-import javax.jms.TextMessage;
 import javax.jms.Topic;
 import javax.naming.InitialContext;
+
+import br.com.lopes.jms.modelo.Pedido;
 
 public class TesteConsumidorTopicoComercial {
 
@@ -20,7 +23,7 @@ public class TesteConsumidorTopicoComercial {
 		InitialContext context = new InitialContext();
 		ConnectionFactory factory = (ConnectionFactory) context.lookup("ConnectionFactory");
 
-		Connection connection = factory.createConnection();
+		Connection connection = factory.createConnection("admin", "admin");
 		connection.setClientID("comercial");
 
 		connection.start();
@@ -35,10 +38,11 @@ public class TesteConsumidorTopicoComercial {
 			@Override
 			public void onMessage(Message message) {
 
-				TextMessage textMessage = (TextMessage) message;
+				ObjectMessage objectMessage = (ObjectMessage) message;
 
 				try {
-					System.out.println(textMessage.getText());
+					Pedido pedido = (Pedido) objectMessage.getObject();
+					System.out.println(pedido.getCodigo());
 				} catch (JMSException e) {
 					e.printStackTrace();
 				}

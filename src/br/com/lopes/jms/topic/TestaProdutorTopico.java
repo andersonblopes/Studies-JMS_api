@@ -30,14 +30,13 @@ public class TestaProdutorTopico {
 
 		// Gera xml a partir de objeto
 		Pedido pedido = new PedidoFactory().geraPedidoComValores();
-		StringWriter writer = new StringWriter();
-		JAXB.marshal(pedido, writer);
+//		StringWriter writer = new StringWriter();
+//		JAXB.marshal(pedido, writer);
+//		String xml = writer.toString();
+//		System.out.println(xml);
 
-		// Gera string a partir de xml
-		String xml = writer.toString();
-		System.out.println(xml);
-
-		Message message = session.createTextMessage(xml);
+		//Message message = session.createTextMessage(xml);
+		Message message = session.createObjectMessage(pedido);
 		// message.setBooleanProperty("ebook", true);
 		producer.send(message);
 
